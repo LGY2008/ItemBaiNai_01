@@ -1,0 +1,112 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1534990736374" stop="1534990796902">
+  <name>test_login</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1534990736374" status="failed" stop="1534990796902">
+      <name>TestLogin.test_login[ithesimaa-123456-None-\u6b64\u7528\u62371\u4e0d\u5b58\u5728]</name>
+      <failure>
+        <message>TimeoutException: Message: 
+</message>
+        <stack-trace>self = &lt;test_login.TestLogin object at 0x00000000045D5CC0&gt;
+username = 'ithesimaa', password = '123456', expect_nickname = None
+expect_toast = '此用户1不存在'
+
+    @pytest.mark.parametrize("username,password,expect_nickname,expect_toast",get_data())
+    @allure.step("开始登录操作")
+    def test_login(self,username,password,expect_nickname,expect_toast):
+        # 把登录页面对象赋值给login 便于调用
+        login=self.login
+        setting=self.setting
+        # 如果expect_nickname不为空，说明为正向数据，执行以下步骤
+        if expect_nickname:
+            try:
+                allure.attach("开始登录","username:%s,password%s"%(username,password))
+                # 输入用户名和密码 进行登录
+                login.page_login(username,password)
+                # 断言是否登录成功
+                assert expect_nickname in login.page_get_nickname()
+                allure.attach("登录成功","username:%s,password%s"%(username,password))
+                # 点击设置
+                login.page_click_setting()
+                allure.attach("退出操作","开始退出")
+                # 点击退出
+                setting.page_drag_and_drop()
+                # 断言 退出是否成功
+                assert setting.page_if_logout()
+                allure.attach( "退出状态", "退出成功！" )
+                # 点击我的
+                login.page_click_me()
+                # 点击已有账号
+                login.page_click_login_link()
+            except:
+                # 截图
+                login.base_get_screenshot()
+        # 逆向数据(登录失败数据)执行流程
+        else:
+            allure.attach("开始校验类数据验证","usrename:'%s',password:'%s'"%(username,password))
+            # 调用登录方法
+            login.page_login( username, password )
+            try:
+                allure.attach("开始验证","预期toast消息为：%s"%expect_toast)
+                # 断言
+&gt;               assert expect_toast in login.base_get_toast(expect_toast)
+
+Scripts\test_login.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+Base\base.py:44: in base_get_toast
+    return self.base_find_element((By.XPATH,message),poll=0.01).text
+Base\base.py:13: in base_find_element
+    return WebDriverWait(self.driver,timeout=timout,poll_frequency=poll).until(lambda x:x.find_element(*loc))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.support.wait.WebDriverWait (session="a0f9fd6e-b41f-4752-85fb-07fbe166d62d")&gt;
+method = &lt;function Base.base_find_element.&lt;locals&gt;.&lt;lambda&gt; at 0x00000000045AFF28&gt;
+message = ''
+
+    def until(self, method, message=''):
+        """Calls the method provided with the driver as an argument until the \
+            return value is not False."""
+        screen = None
+        stacktrace = None
+    
+        end_time = time.time() + self._timeout
+        while True:
+            try:
+                value = method(self._driver)
+                if value:
+                    return value
+            except self._ignored_exceptions as exc:
+                screen = getattr(exc, 'screen', None)
+                stacktrace = getattr(exc, 'stacktrace', None)
+            time.sleep(self._poll)
+            if time.time() &gt; end_time:
+                break
+&gt;       raise TimeoutException(message, screen, stacktrace)
+E       selenium.common.exceptions.TimeoutException: Message:
+
+c:\python3.6.3\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException</stack-trace>
+      </failure>
+      <attachments/>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="39276-MainThread"/>
+        <label name="host" value="2XMQY7MAJVGU2PB"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1534990766472" status="failed" stop="1534990796792">
+          <name>开始登录操作</name>
+          <title>开始登录操作</title>
+          <attachments>
+            <attachment source="b7a14d77-2c82-41c6-9b5f-9f12b0448a91-attachment.txt" title="开始校验类数据验证" type="text/plain"/>
+            <attachment source="6d5c9298-e7e7-429a-9df8-5d145a476b66-attachment.txt" title="开始验证" type="text/plain"/>
+            <attachment source="205132f9-9dda-41da-9b16-a52148b29692-attachment.txt" title="开始截图" type="text/plain"/>
+            <attachment source="94e7c225-ae75-402f-b3a0-18310d7204df-attachment.png" title="截图完成，写入报告" type="image/png"/>
+          </attachments>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>
