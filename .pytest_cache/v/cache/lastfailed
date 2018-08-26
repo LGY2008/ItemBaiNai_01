@@ -1,4 +1,8 @@
 {
+  "Scripts/test02.py::Test02::()::test01": true,
+  "Scripts/test02.py::TestNew": true,
+  "Scripts/test_address.py::TestAddress::()::test_delete_address": true,
+  "Scripts/test_address.py::TestAddress::()::test_edit_address[\\u4fee\\u6539-\\u5c0f\\u4e03-13588886666-\\u6c5f\\u82cf-\\u82cf\\u5dde-\\u5e73\\u6c5f-\\u4eba\\u6c11\\u8def101\\u53f735\\u680b#428\\u53f7-100300]": true,
   "Scripts/test_login.py::TestLogin": true,
   "Scripts/test_login.py::TestLogin::()::test_login": true,
   "Scripts/test_login.py::TestLogin::()::test_login[ 18610453007 -123456-itheima-None]": true,

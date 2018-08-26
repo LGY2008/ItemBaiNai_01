@@ -1,5 +1,5 @@
 from appium import webdriver
-def get_driver(package,activity):
+def get_driver(package="com.yunmall.lc",activity="com.yunmall.ymctoc.ui.activity.MainActivity"):
     # server 启动参数
     desired_caps = {}
     # 设备信息

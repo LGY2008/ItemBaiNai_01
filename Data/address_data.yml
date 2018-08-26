@@ -1,0 +1,16 @@
+add_address:
+  test_add_address01:
+    receipt_name: "赵六"
+    phone: "18688889999"
+    address_info: "留仙二路中粮商务公园13层2#1312"
+    post: "100080"
+edit_address:
+  test_edit_address01:
+    text: "修改"
+    receipt_name: "小七"
+    phone: "13588886666"
+    sheng: "江苏"
+    shi: "苏州"
+    qu: "平江"
+    address_info: "人民路101号35栋#428号"
+    post: "100300"

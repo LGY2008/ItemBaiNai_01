@@ -19,7 +19,7 @@ def get_data():
 class TestLogin():
     def setup_class(self):
         # 获取driver
-        self.driver=get_driver("com.yunmall.lc","com.yunmall.ymctoc.ui.activity.MainActivity")
+        self.driver=get_driver()
         # 实例化统一入口类
         self.page=PageIn(self.driver)
         # 实例化登录页面对象

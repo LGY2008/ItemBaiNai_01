@@ -29,3 +29,17 @@ class PageLogin(Base):
         self.page_input_password(password)
         # 点击登录
         self.page_click_login()
+
+    # 登录封装二 地址管理初始化专用
+    def page_login_address(self,username="18610453007",password="123456"):
+        # 点击 我
+        self.page_click_me()
+        # 已有账号去登录
+        self.page_click_login_link()
+        # 输入账号和密码
+        self.page_input_username(username)
+        self.page_input_password(password)
+        # 点击登录
+        self.page_click_login()
+        # 点击设置
+        self.page_click_setting()

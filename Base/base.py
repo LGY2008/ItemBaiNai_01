@@ -12,7 +12,7 @@ class Base():
     def base_find_element(self,loc,timout=10,poll=0.5):
         return WebDriverWait(self.driver,timeout=timout,poll_frequency=poll).until(lambda x:x.find_element(*loc))
     # 定位元素--list
-    def base_find_elements(self, loc, timout=5, poll=0.5):
+    def base_find_elements(self, loc, timout=10, poll=0.5):
         return WebDriverWait( self.driver, timeout=timout, poll_frequency=poll ).until( lambda x: x.find_elements( *loc ) )
     # 点击元素方法
     def base_click(self,loc):
@@ -48,3 +48,18 @@ class Base():
     # 滑动元素
     def base_drag_and_drop(self,el1,el2):
         self.driver.drag_and_drop(el1,el2)
+    # 使用xpath点击 封装
+    def base_xpath_click(self,message):
+        message = "//*[contains(@text,'" + message + "')]"
+        self.base_find_element((By.XPATH,message)).click()
+    # 第二次演示封装
+    def base_click_xpath(self,message):
+        message="//*[contains(@text,'"+message+"')]"
+        self.base_find_element((By.XPATH,message)).click()
+    # 封装 根据传入字符串，返回符合条件的元素列表
+    def base_xpath_return_elements(self,text):
+        text = "//*[contains(@text,'" + text + "')]"
+        return self.base_find_elements((By.XPATH,text))
+    # 传入元素列表，进行固定点击操作
+    def base_click_elements(self,elements):
+        elements[0].click()
